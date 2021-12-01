@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %} {{title}} {% endblock %}
+{% block header %} {{header}} {% endblock %}
+{% block content %}
+
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Group</th>
+      <th scope="col">Is Active</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for group in groups %}
+        {% if number.session_key %}
+            <tr class="table-primary">
+        {% else %}
+            <tr class="table-warning">
+        {% endif %}
+
+
+      <th scope="row">{{group.id}}</th>
+      <td>{{group}}</td>
+      <td>
+           {% if group.active %}
+                Ok
+            {% else %}
+                False
+
+        {% endif %}
+      </td>
+      </tr>
+    {% empty %}
+        <li>Sorry, no numbers in this list.</li>
+    {% endfor %}
+
+    </tr>
+  </tbody>
+</table>
+<button type="button" class="btn btn-outline-primary" onclick="location.href='/groups/{{number}}/addgroup'">Add group</button>
+
+
+
+{% endblock %}

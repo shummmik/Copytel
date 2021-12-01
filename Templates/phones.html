@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %} {{title}} {% endblock %}
+{% block header %} {{header}} {% endblock %}
+{% block content %}
+
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Phone</th>
+      <th scope="col">ToGroups</th>
+      <th scope="col">Is Active</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for number in numbers %}
+        {% if number.session_key %}
+            <tr class="table-primary">
+        {% else %}
+            <tr class="table-warning">
+        {% endif %}
+
+
+      <th scope="row">{{number.id}}</th>
+      <td>{{number}}</td>
+      <td><button type="button" class="btn btn-outline-primary" onclick="location.href='/groups/{{number}}/groups'">Groups</button></td>
+      <td>
+           {% if number.session_key %}
+                Ok
+            {% else %}
+                <button type="button" class="btn btn-outline-primary" onclick="location.href='/groups/{{number}}/reg'">Registration</button>
+
+        {% endif %}
+      </td>
+      </tr>
+
+    {% empty %}
+        <li>Sorry, no numbers in this list.</li>
+    {% endfor %}
+
+    </tr>
+  </tbody>
+</table>
+
+
+
+{% endblock %}

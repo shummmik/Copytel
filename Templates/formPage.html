@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} {{title}} {% endblock %}
+{% block header %} {{header}} {% endblock %}
+{% block content %}
+
+<div class="col-lg-6">
+<form method ='post'>
+ {% csrf_token %}
+<fieldset>
+
+{% for element in formphone %}
+    <div class="form-group">
+        <label class="col-form-label mt-4" for={{ element.id_for_label }}>{{ element.label }}:</label>
+        {{ element }}
+        {% if element.errors %}
+        <div class="invalid-feedback">{{element.errors.as_text}}</div>
+        {% endif %}
+        {{element.help_text}}
+</div>
+    {% endfor %}
+  </fieldset>
+<fieldset>
+        <button type="submit" class="btn btn-primary mt-4">Submit</button>
+    </fieldset>
+</form>
+</div>
+
+{% endblock %}

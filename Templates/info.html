@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %} {{title}} {% endblock %}
+{% block header %} {{header}} {% endblock %}
+{% block content %}
+
+
+<div class="form-group">
+  <fieldset>
+    <label class="form-label mt-4" for="readOnlyInput">Номер </label>
+    <input class="form-control" id="readOnlyInput" type="text" placeholder={{number.mobNumber}} readonly="">
+  </fieldset>
+</div>
+<div class="form-group">
+  <fieldset>
+    <label class="form-label mt-4" for="readOnlyInput">ApiId</label>
+    <input class="form-control" id="readOnlyInput" type="text" placeholder={{number.apiId}} readonly="">
+  </fieldset>
+</div>
+<div class="form-group">
+  <fieldset>
+    <label class="form-label mt-4" for="readOnlyInput">ApiHash</label>
+    <input class="form-control" id="readOnlyInput" type="text" placeholder={{number.apiHash}} readonly="">
+  </fieldset>
+</div>
+
+
+    {% if number.session_key %}
+                <div class="form-group">
+                  <fieldset>
+                    <label class="form-label mt-4" for="readOnlyInput">Session key</label>
+                    <input class="form-control" id="readOnlyInput" type="text" placeholder={{number.session_key}} readonly="">
+                  </fieldset>
+                </div>
+            {% else %} <div class="form-group">
+                  <fieldset>
+                <button type="button" class="mt-4 btn btn-outline-primary" onclick="location.href='/groups/{{number}}/reg'">Registration</button>
+                  </fieldset>
+                </div>
+        {% endif %}
+
+{% endblock %}
+
+
